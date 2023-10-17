@@ -47,6 +47,17 @@ function App() {
     }
   }
 
+  function handleClick(){
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://ec2-3-95-179-182.compute-1.amazonaws.com/api/v1/Product');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        setCartItem(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send();
+  }
+
   // Stpe: 6
   const decreaseQty = (product) => {
     // if hamro product alredy cart xa bhane  find garna help garxa
@@ -73,10 +84,10 @@ function App() {
         <Header CartItem={CartItem} />
         <Switch>
           <Route path='/' exact>
-            <Pages productItems={productItems} addToCart={addToCart} shopItems={shopItems} />
+            <Pages productItems={productItems} addToCart={handleClick} shopItems={shopItems} />
           </Route>
           <Route path='/cart' exact>
-            <Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} />
+            <Cart CartItem={CartItem} addToCart={handleClick} decreaseQty={decreaseQty} />
           </Route>
         </Switch>
         <Footer />
