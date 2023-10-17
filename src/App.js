@@ -7,6 +7,9 @@ import Data from "./components/Data"
 import Cart from "./common/Cart/Cart"
 import Footer from "./common/footer/Footer"
 import Sdata from "./components/shops/Sdata"
+import axios from "axios"
+
+const baseURL = "http://ec2-3-95-179-182.compute-1.amazonaws.com/"
 
 function App() {
   /*
@@ -48,14 +51,8 @@ function App() {
   }
 
   function handleClick(){
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://ec2-3-95-179-182.compute-1.amazonaws.com/api/v1/Product');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        setCartItem(JSON.parse(xhr.responseText));
-      }
-    };
-    xhr.send();
+    return axios.get(`${baseURL}/api/v1/Product`)
+                .then(response => response.data);
   }
 
   // Stpe: 6
