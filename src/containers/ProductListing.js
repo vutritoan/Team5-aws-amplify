@@ -9,7 +9,7 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await axios
-      .get("http://ec2-3-95-14-238.compute-1.amazonaws.com/api/v1/Product")
+      .get("http://ec2-34-229-96-94.compute-1.amazonaws.com/api/v1/Product")
       .catch((err) => {
         console.log("Err: ", err);
       });
